@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Mike Baker's Project Page</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body onload="setBoard()">
+    <h1 id="mainHeading">Mike Baker's Project Page</h1>
+    <div class="tab">
+      <button class="tablinks" onclick="location.href='index.html'">Home</button>
+      <button class="tablinks" onclick="">Bakerbuck Bank</button>
+      <button class="tablinks" onclick="location.href='othello.html';">Othello</button>
+      <button class="tablinks" onclick="">Zoinks</button>
+      <button class="tablinks" onclick="">Resume</button>
+    </div>
+    <div class="othelloContent" >
+      <div id="othelloHeader">
+        <h2 class="othelloPage">A Digital Recreation of Othello with AI</h2>
+        <p class="othelloPage">I have four children and we had been playing the classic othello game at home.  But, as happens with young children, the gameboard kept getting bumped and we had to try to put the board back the way it was.  And then I had the idea of making a digital version of the game so you couldn't bump the game.  The hardest part was trying to figure out how to explain to the computer legal moves.  I eventually used a function that would search in the cardinal directions recursivly and it worked! </p>
+
+      </div>
+      <div class="othelloGameboard">
+        <div id="gameboard">
+          <div class="row">
+            <div class="column">
+              <button type="button" onclick="searchAround(0,0)"><img src="greenBlank.png" id="a0"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(0,1)"><img src="greenBlank.png" id="a1" height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(0,2)"><img src="greenBlank.png" id="a2"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(0,3)"><img src="greenBlank.png" id="a3" height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(0,4)"><img src="greenBlank.png" id="a4"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(0,5)"><img src="greenBlank.png" id="a5" height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(0,6)"><img src="greenBlank.png" id="a6"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(0,7)"><img src="greenBlank.png" id="a7" height ="50" width="50" /></button>
+            </div>
+            <div class="column">
+              <button type="button" onclick="searchAround(1,0)"><img src="greenBlank.png" id="b0"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(1,1)"><img src="greenBlank.png" id="b1"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(1,2)"><img src="greenBlank.png" id="b2"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(1,3)"><img src="greenBlank.png" id="b3"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(1,4)"><img src="greenBlank.png" id="b4"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(1,5)"><img src="greenBlank.png" id="b5"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(1,6)"><img src="greenBlank.png" id="b6"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(1,7)"><img src="greenBlank.png" id="b7"height ="50" width="50" /></button>
+            </div>
+            <div class="column">
+              <button type="button" onclick="searchAround(2,0)"><img src="greenBlank.png" id="c0"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(2,1)"><img src="greenBlank.png" id="c1"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(2,2)"><img src="greenBlank.png" id="c2"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(2,3)"><img src="greenBlank.png" id="c3"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(2,4)"><img src="greenBlank.png" id="c4"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(2,5)"><img src="greenBlank.png" id="c5"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(2,6)"><img src="greenBlank.png" id="c6"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(2,7)"><img src="greenBlank.png" id="c7"height ="50" width="50" /></button>
+            </div>
+            <div class="column">
+              <button type="button" onclick="searchAround(3,0)"><img src="greenBlank.png" id="d0"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(3,1)"><img src="greenBlank.png" id="d1"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(3,2)"><img src="greenBlank.png" id="d2"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(3,3)"><img src="greenBlank.png" id="d3"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(3,4)"><img src="greenBlank.png" id="d4"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(3,5)"><img src="greenBlank.png" id="d5"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(3,6)"><img src="greenBlank.png" id="d6"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(3,7)"><img src="greenBlank.png" id="d7"height ="50" width="50" /></button>
+            </div>
+            <div class="column">
+              <button type="button" onclick="searchAround(4,0)"><img src="greenBlank.png" id="e0"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(4,1)"><img src="greenBlank.png" id="e1"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(4,2)"><img src="greenBlank.png" id="e2"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(4,3)"><img src="greenBlank.png" id="e3"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(4,4)"><img src="greenBlank.png" id="e4"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(4,5)"><img src="greenBlank.png" id="e5"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(4,6)"><img src="greenBlank.png" id="e6"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(4,7)"><img src="greenBlank.png" id="e7"height ="50" width="50" /></button>
+            </div>
+            <div class="column">
+              <button type="button" onclick="searchAround(5,0)"><img src="greenBlank.png" id="f0"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(5,1)"><img src="greenBlank.png" id="f1"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(5,2)"><img src="greenBlank.png" id="f2"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(5,3)"><img src="greenBlank.png" id="f3"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(5,4)"><img src="greenBlank.png" id="f4"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(5,5)"><img src="greenBlank.png" id="f5"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(5,6)"><img src="greenBlank.png" id="f6"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(5,7)"><img src="greenBlank.png" id="f7"height ="50" width="50" /></button>
+            </div>
+            <div class="column">
+              <button type="button" onclick="searchAround(6,0)"><img src="greenBlank.png" id="g0"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(6,1)"><img src="greenBlank.png" id="g1"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(6,2)"><img src="greenBlank.png" id="g2"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(6,3)"><img src="greenBlank.png" id="g3"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(6,4)"><img src="greenBlank.png" id="g4"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(6,5)"><img src="greenBlank.png" id="g5"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(6,6)"><img src="greenBlank.png" id="g6"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(6,7)"><img src="greenBlank.png" id="g7"height ="50" width="50" /></button>
+            </div>
+            <div class="column">
+              <button type="button" onclick="searchAround(7,0)"><img src="greenBlank.png" id="h0"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(7,1)"><img src="greenBlank.png" id="h1"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(7,2)"><img src="greenBlank.png" id="h2"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(7,3)"><img src="greenBlank.png" id="h3"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(7,4)"><img src="greenBlank.png" id="h4"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(7,5)"><img src="greenBlank.png" id="h5"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(7,6)"><img src="greenBlank.png" id="h6"height ="50" width="50" /></button>
+              <button type="button" onclick="searchAround(7,7)"><img src="greenBlank.png" id="h7"height ="50" width="50" /></button>
+            </div>
+          </div>
+        </div>
+        <div id="otherButtons">
+          <h3 id="blueCount" class="othelloPage">Blue Count (You): 0</h3>
+          <h3 id="redCount" class="othelloPage">Red Count (The AI): 0</h3>
+          <h3 id="playerTurn" class="othelloPage"></h3>
+          <div class="difficultyRadioButtons">
+            <h3>Choose the difficulty level</h3>
+            <input type="radio" name="difficulty" value="Easy" onChange="updateRadioValue()" checked>Easy
+            
+            <input type="radio" name="difficulty" value="Medium" onChange="updateRadioValue()">Medium
+            
+            <input type="radio" name="difficulty" value="Difficult" onChange="updateRadioValue()">Difficult
+            
+          </div>
+          <button type="button" class="othelloFunctionalitybuttons" onclick="switchColors()">Skip My Turn</button>
+          <button type="button" class="othelloFunctionalitybuttons" onclick="playAgain()">Start Over/ Play Again</button>
+
+
+
+        </div>
+      </div>
+
+
+      <script src="js/main.js">
+      </script>
+    </div>
+  </body>
+</html>
