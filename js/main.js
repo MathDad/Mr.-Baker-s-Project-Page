@@ -47,6 +47,7 @@ var btnNames = [
   ];
 
 console.log("Variables set!");
+
 //Sets the board after players turn
 function setBoard(){
   console.log("Set Board called");
@@ -91,42 +92,38 @@ function displayTurn(){
 }
 
 function AIturn(){
+  //possibleMoves array gets emptied
   possibleMoves=[];
+  //this loop fills possibleMoves array
   for(var i = 0;i<8;i++){
     for(var j = 0;j<8;j++){
       searchAroundNoFlip(i,j);
     }
   }
+  //if possibleMoves Array has 0 entries that means AI has no moves and should switch players. else it should run the ai at the selected difficulty. 
 
   //sort 2d array for min values
   if(aiDifficulty==0){
+    console.log("AI Easy Difficulty")
     var minPossibleMoves = [];
     var minCoinsCaptured = 64;
-    var minX = 8;
-    var minY = 8;
 
-    console.log("Possible Moves");
+    //console.log("Possible Moves");
     for(var i = 0;i<possibleMoves.length;i++){
-      console.log("( "+possibleMoves[i][0]+" , "+possibleMoves[i][1]+" )")
       if(possibleMoves[i][2]<minCoinsCaptured){
         minCoinsCaptured=possibleMoves[i][2];
-        minX=possibleMoves[i][0];
-        minY=possibleMoves[i][1];
       }
     }
+    console.log("Min Captures: "+minCoinsCaptured);
 
-
+    console.log("Sorted Possible Moves");
     for(var i = 0;i<possibleMoves.length;i++){
       if(possibleMoves[i][2]==minCoinsCaptured){
         minPossibleMoves.push([possibleMoves[i][0],possibleMoves[i][1]]);
+        console.log("( "+possibleMoves[i][0]+" , "+possibleMoves[i][1]+" )");
       }
     }
-    console.log("Sorted Possible Moves");
-    for(var i =0;i<minPossibleMoves.length;i++){
-      console.log("( "+minPossibleMoves[i][0]+" , "+minPossibleMoves[i][1]+" )")
-    }
-
-
+    
     var randomPick=Math.floor(Math.random()*minPossibleMoves.length);
 
     //call search around for first item in possibleMoves array
@@ -137,6 +134,7 @@ function AIturn(){
       searchAround(minPossibleMoves[randomPick][0],minPossibleMoves[randomPick][1]);
     }
   } else if (aiDifficulty==1){
+    console.log("AI Medium Difficulty")
     //add medium bot difficulty here
     var randomPick=Math.floor(Math.random()*possibleMoves.length);
     console.log("AI chose: ( "+possibleMoves[randomPick][0]+" , "+possibleMoves[randomPick][1]+" )")
@@ -147,81 +145,78 @@ function AIturn(){
     }
   }else{
     //add hard bot difficulty here.
+    console.log("AI Hard Difficulty")
     var maxPossibleMoves = [];
     var maxCoinsCaptured = 0;
-    var minX = 8;
-    var minY = 8;
-
+    
     for(var i = 0;i<possibleMoves.length;i++){
       if(possibleMoves[i][2]>maxCoinsCaptured){
-        minCoinsCaptured=possibleMoves[i][2];
-        minX=possibleMoves[i][0];
-        minY=possibleMoves[i][1];
+        maxCoinsCaptured=possibleMoves[i][2];
       }
     }
-
+    console.log("MaxCoinsCaptured: "+ maxCoinsCaptured);
+    
+    console.log("Sorted Possible Moves")
     for(var i = 0;i<possibleMoves.length;i++){
-      if(possibleMoves[i][2]==minCoinsCaptured){
+      if(possibleMoves[i][2]==maxCoinsCaptured){
         maxPossibleMoves.push([possibleMoves[i][0],possibleMoves[i][1]]);
+        console.log("( "+possibleMoves[i][0]+" , "+possibleMoves[i][1]+" )");
       }
     }
+    
     var randomPick=Math.floor(Math.random()*maxPossibleMoves.length);
 
     //call search around for first item in possibleMoves array
-    console.log("AI chose: ( "+maxPossibleMoves[randomPick][0]+" , "+maxPossibleMoves[randomPick][1]+" )")
+    console.log("AI chose: ( "+maxPossibleMoves[randomPick][0]+" , "+maxPossibleMoves[randomPick][1]+" )");
     if(maxPossibleMoves.length<1){
       switchColors();
     }else{
-      searchAround(minX,minY);
+      searchAround(maxPossibleMoves[randomPick][0],maxPossibleMoves[randomPick][1]);
     }
   }
-
-
 }
-
-
 
 //Search around the button clicked to see what is red, blue and blank
 function searchAround(x,y){
   if(grid[x][y]==1||grid[x][y]==2){
     return;
   }
-  console.log("Uppper Left");
+  //console.log("Uppper Left");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
   search(x,y,-1,-1);
-  console.log("Top");
+  //console.log("Top");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
   search(x,y,-1,0);
-  console.log("Upper Right");
+  //console.log("Upper Right");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
   search(x,y,-1,1);
-  console.log("Right");
+  //console.log("Right");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
   search(x,y,0,1);
-  console.log("Bottom right");
+  //console.log("Bottom right");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
   search(x,y,1,1);
-  console.log("Bottom");
+  //console.log("Bottom");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
   search(x,y,1,0);
-  console.log("Bottom Left");
+  //console.log("Bottom Left");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
   search(x,y,1,-1);
-  console.log("Left");
+  //console.log("Left");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
@@ -245,14 +240,13 @@ function searchAround(x,y){
 //Companion to Search Around Function, recursivly calls itself in given direction.
 function search(x,y,h,v){
 
-  console.log("search called on X+v: "+(x+v)+" y+h: "+(y+h));
+  //console.log("search called on X+v: "+(x+v)+" y+h: "+(y+h));
 
  if(x+v>=0 && x+v<8 && y+h>=0 && y+h<8 && grid[x+v][y+h]==notCurrentColor){
     opColorFound = true;
-    console.log("Opposite color found")
+    //console.log("Opposite color found")
     if (tempArray.length==0){
-    tempArray.push([x,y]);
-
+      tempArray.push([x,y]);
     }
     tempArray.push([x+v,y+h]);
     search(x+v,y+h,h,v);
@@ -260,12 +254,11 @@ function search(x,y,h,v){
   }else if(x+v>=0 && x+v<8 && y+h>=0 && y+h<8 &&grid[x+v][y+h]==currentColor){
     if(opColorFound==true){
       sameColorFoundSecond = true;
-      console.log("Same color sandwhiches other color!")
+      //console.log("Same color sandwhiches other color!")
       flip();
     }
-
   }else{
-    console.log("No tile found")
+    //console.log("No tile found")
   }
 }
 //Search around the button clicked to see what is red, blue and blank
@@ -273,7 +266,7 @@ function searchAroundNoFlip(x,y){
   if(grid[x][y]==1||grid[x][y]==2){
     return;
   }
-  console.log("( "+x+" , "+y+" )")
+  //console.log("( "+x+" , "+y+" )")
 
   opColorFound=false;
   sameColorFoundSecond=false;
@@ -343,14 +336,12 @@ function searchAroundNoFlip(x,y){
 
 function searchNoFlip(x,y,h,v){
  if(x+v>=0 && x+v<8 && y+h>=0 && y+h<8 && grid[x+v][y+h]==notCurrentColor){
-
     opColorFound = true;
-
     if (tempArray.length==0){
     tempArray.push([x,y]);
     }
     tempArray.push([x+v,y+h]);
-    console.log("Temp Array coordinate: ( "+(x+v)+" , "+(y+h)+" )")
+    //console.log("Temp Array coordinate: ( "+(x+v)+" , "+(y+h)+" )")
     searchNoFlip(x+v,y+h,h,v);
     //console.log("appended to temp");
   }else if(x+v>=0 && x+v<8 && y+h>=0 && y+h<8 &&grid[x+v][y+h]==currentColor){
@@ -362,7 +353,6 @@ function searchNoFlip(x,y,h,v){
         possibleMoves.push([firstX,firstY,maxCoinsCaptured]);
       }
     }
-
   }else{
     //console.log("No tile found")
   }
@@ -378,7 +368,6 @@ function flip(){
 
 //Switches the variable values for currentColor and notCurrentColor
 function switchColors(){
-
   if(currentColor==1){
     currentColor=2;
     notCurrentColor =1;
@@ -395,7 +384,6 @@ function switchColors(){
 function updateScore(){
   blueScore=numSquaresColor(1);
   redScore=numSquaresColor(2);
-
   //setText("blueScoreBox",""+blueScore);
   document.getElementById("blueCount").innerHTML="Blue Count (You): "+blueScore;
   //setText("redScoreBox",""+redScore);
@@ -425,20 +413,20 @@ function checkForWin(){
   var blank = numSquaresColor(0);
 
   if(red ==0||blue==0||blank==0){
-    //setScreen("winLoseScreen");
+    
     if(redScore>blueScore){
       //red wins
-      //setText("winLoseDisplay","RED WINS!!!");
+      
       document.getElementById("playerTurn").innerHTML="RED WINS!!!";
     }else if(blueScore>redScore){
       //blue wins
-      //setText("winLoseDisplay","BLUE WINS!!!");
+      
       document.getElementById("playerTurn").innerHTML="BLUE WINS!!!";
     }else{
       //its a tie
-      //setText("winLoseDisplay","Tie");
+      
       document.getElementById("playerTurn").innerHTML="Tie";
-      //winDisplay();
+      
     }
   }
 }
