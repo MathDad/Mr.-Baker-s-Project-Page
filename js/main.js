@@ -7,22 +7,27 @@
 
 
 //global variables
-var blueScore = 0;
-var redScore = 0;
 
 //blue is 1
 //red is 2
 var currentColor = 1;
 var notCurrentColor = 2;
 
+var playerTurn=true;
+var playerCanPlay = true;
+var aiCanPlay = true;
+var gameIsPlayable = true;
+
+var numPlayersMoves = 0;
+var numAImoves=0;
+
+
 var opColorFound=false;
 var sameColorFoundSecond=false;
 var tempArray=[];
-var flipped = false;
+
 var possibleMoves = [];
-var firstX=null;
-var firstY=null;
-var aiDifficulty = 0 ;
+var aiDifficulty = 0;
 
 var btnNames = [
   ["a0", "a1","a2","a3","a4","a5","a6","a7"],
@@ -33,9 +38,9 @@ var btnNames = [
   ["f0", "f1","f2","f3","f4","f5","f6","f7"],
   ["g0", "g1","g2","g3","g4","g5","g6","g7"],
   ["h0", "h1","h2","h3","h4","h5","h6","h7"],
-  ];
+];
 
-  var grid = [
+var grid = [
   [0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0],
@@ -44,14 +49,83 @@ var btnNames = [
   [0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0],
-  ];
+];
 
-console.log("Variables set!");
+function mainGame(x,y){
+  
+  if(gameIsPlayable){
+    //playersturn
+    playerTurn=true;
+    if(playerCanPlay==false && aiCanPlay==false){
+      //end the game
+      gameIsPlayable=false;
+      checkForWin();
+    }else{
+      console.log("Start player turn! ");
+      findPossibleMoves();
+      var clickedPossibleMove = isAPossbleMove(x,y);
+      console.log("Clicked possible Move: "+clickedPossibleMove);
+      if(possibleMoves.length==0){
+        playerCanPlay=false;
+      }else if(grid[x][y]==1||grid[x][y]==2){
+        //user clicked on a tile already on the board
+        updateDisplay("Whoops there is a tile already there.");
+        return;
+      }else if(clickedPossibleMove==false){
+        //user clicked on a tile that isn't a legal move
+        updateDisplay("Whoops that's not a legal move.");
+        return;
+      }else{
+        searchAround(x,y,true)
+      }
+        
+      checkForWin();
+      switchColors();
+      setBoard();
+      updateScore();
+      
+    }
+  }
+  
+  if(gameIsPlayable){
+    //aiTurn
+    playerTurn=false;
+    if(playerCanPlay==false && aiCanPlay==false){
+      //end the game
+      gameIsPlayable=false;
+      checkForWin();
+    } else{
+      console.log("Start AI turn! ");
+      findPossibleMoves();
+      if(possibleMoves.length==0){
+        aiCanPlay =false;
+      }else{
+        AIturn();
+      }
+      
+      checkForWin();
+      switchColors();
+      setBoard();
+      updateScore();
+      updateDisplay("Blue Turn. You have "+numPlayersMoves+" moves");
+    }
+  }
+}
+
+function findPossibleMoves(){
+  console.log("Find possible Moves called")
+  possibleMoves=[];
+  //this loop fills possibleMoves array
+  for(var i = 0;i<8;i++){
+    for(var j = 0;j<8;j++){
+      searchAround(i,j,false);
+    }
+  }
+}
 
 //Sets the board after players turn
 function setBoard(){
   console.log("Set Board called");
-
   for(var i = 0;i<8;i++){
     for(var j = 0;j<8;j++){
 
@@ -67,41 +141,9 @@ function setBoard(){
       }
     }
   }
-  console.log("displayTurn called");
-  displayTurn();
-  console.log("updateScore called");
-  updateScore();
-}
-
-
-//Shows who's turn it is
-function displayTurn(){
-  if(currentColor==2){
-    //setText("turnDisplay","Red Turn");
-    document.getElementById("playerTurn").innerHTML = "Red Turn";
-    AIturn();
-  }else{
-    //setText("turnDisplay","Blue Turn");
-    if(redScore>2){
-      document.getElementById("playerTurn").innerHTML = "AI took a turn. It's your turn again.";
-    }else{
-      document.getElementById("playerTurn").innerHTML = "Blue (Your) Turn";
-    }
-
-  }
 }
 
 function AIturn(){
-  //possibleMoves array gets emptied
-  possibleMoves=[];
-  //this loop fills possibleMoves array
-  for(var i = 0;i<8;i++){
-    for(var j = 0;j<8;j++){
-      searchAroundNoFlip(i,j);
-    }
-  }
-  //if possibleMoves Array has 0 entries that means AI has no moves and should switch players. else it should run the ai at the selected difficulty. 
-
   //sort 2d array for min values
   if(aiDifficulty==0){
     console.log("AI Easy Difficulty")
@@ -123,7 +165,7 @@ function AIturn(){
         console.log("( "+possibleMoves[i][0]+" , "+possibleMoves[i][1]+" )");
       }
     }
-    
+    console.log("Min possible array length: "+minPossibleMoves.length)
     var randomPick=Math.floor(Math.random()*minPossibleMoves.length);
 
     //call search around for first item in possibleMoves array
@@ -131,7 +173,7 @@ function AIturn(){
     if(minPossibleMoves.length<1){
       switchColors();
     }else{
-      searchAround(minPossibleMoves[randomPick][0],minPossibleMoves[randomPick][1]);
+      searchAround(minPossibleMoves[randomPick][0],minPossibleMoves[randomPick][1],true);
     }
   } else if (aiDifficulty==1){
     console.log("AI Medium Difficulty")
@@ -141,7 +183,7 @@ function AIturn(){
     if(possibleMoves.length<1){
       switchColors();
     }else{
-      searchAround(possibleMoves[randomPick][0],possibleMoves[randomPick][1]);
+      searchAround(possibleMoves[randomPick][0],possibleMoves[randomPick][1],true);
     }
   }else{
     //add hard bot difficulty here.
@@ -171,77 +213,59 @@ function AIturn(){
     if(maxPossibleMoves.length<1){
       switchColors();
     }else{
-      searchAround(maxPossibleMoves[randomPick][0],maxPossibleMoves[randomPick][1]);
+      searchAround(maxPossibleMoves[randomPick][0],maxPossibleMoves[randomPick][1],true);
     }
   }
 }
 
 //Search around the button clicked to see what is red, blue and blank
-function searchAround(x,y){
-  if(grid[x][y]==1||grid[x][y]==2){
-    return;
-  }
+function searchAround(x,y,flip){
   //console.log("Uppper Left");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
-  search(x,y,-1,-1);
+  search(x,y,-1,-1,flip);
   //console.log("Top");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
-  search(x,y,-1,0);
+  search(x,y,-1,0,flip);
   //console.log("Upper Right");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
-  search(x,y,-1,1);
+  search(x,y,-1,1,flip);
   //console.log("Right");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
-  search(x,y,0,1);
+  search(x,y,0,1,flip);
   //console.log("Bottom right");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
-  search(x,y,1,1);
+  search(x,y,1,1,flip);
   //console.log("Bottom");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
-  search(x,y,1,0);
+  search(x,y,1,0,flip);
   //console.log("Bottom Left");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
-  search(x,y,1,-1);
+  search(x,y,1,-1,flip);
   //console.log("Left");
   opColorFound=false;
   sameColorFoundSecond=false;
   tempArray=[];
-  search(x,y,0,-1);
+  search(x,y,0,-1,flip);
 
-  if(flipped){
-    switchColors();
-    setBoard();
-    updateScore();
-    checkForWin();
-  }else{
-    //flipped couldn't be called because they are no legal possibleMoves
-    //switchColors();
-    //setBoard();
-    //updateScore();
-    //checkForWin();
-  }
-  flipped=false;
 }
 
 //Companion to Search Around Function, recursivly calls itself in given direction.
-function search(x,y,h,v){
-
+function search(x,y,h,v,flip){
   //console.log("search called on X+v: "+(x+v)+" y+h: "+(y+h));
-
  if(x+v>=0 && x+v<8 && y+h>=0 && y+h<8 && grid[x+v][y+h]==notCurrentColor){
     opColorFound = true;
     //console.log("Opposite color found")
@@ -249,121 +273,44 @@ function search(x,y,h,v){
       tempArray.push([x,y]);
     }
     tempArray.push([x+v,y+h]);
-    search(x+v,y+h,h,v);
+    search(x+v,y+h,h,v,flip);
     //console.log("appended to temp");
   }else if(x+v>=0 && x+v<8 && y+h>=0 && y+h<8 &&grid[x+v][y+h]==currentColor){
     if(opColorFound==true){
       sameColorFoundSecond = true;
       //console.log("Same color sandwhiches other color!")
-      flip();
-    }
-  }else{
-    //console.log("No tile found")
-  }
-}
-//Search around the button clicked to see what is red, blue and blank
-function searchAroundNoFlip(x,y){
-  if(grid[x][y]==1||grid[x][y]==2){
-    return;
-  }
-  //console.log("( "+x+" , "+y+" )")
+      if(flip){
+        flipTiles();
+      } else{
+        if(tempArray.length>0){
+          console.log("Coin Captured coordinate: ( "+tempArray[0][0]+" , "+tempArray[0][1]+" ) Captures: "+tempArray.length)
+          possibleMoves.push([tempArray[0][0],tempArray[0][1],tempArray.length]);
+          if(playerTurn){
+            numPlayersMoves=possibleMoves.length;
+          }else{
+            numAImoves=possibleMoves.length;
+          }
 
-  opColorFound=false;
-  sameColorFoundSecond=false;
-  tempArray=[];
-  firstX=x;
-  firstY=y;
-  searchNoFlip(x,y,-1,-1);
-  firstX=null;
-  firstY=null;
-  opColorFound=false;
-  sameColorFoundSecond=false;
-  tempArray=[];
-  firstX=x;
-  firstY=y;
-  searchNoFlip(x,y,-1,0);
-  firstX=null;
-  firstY=null;
-  opColorFound=false;
-  sameColorFoundSecond=false;
-  tempArray=[];
-  firstX=x;
-  firstY=y;
-  searchNoFlip(x,y,-1,1);
-  firstX=null;
-  firstY=null;
-  opColorFound=false;
-  sameColorFoundSecond=false;
-  tempArray=[];
-  firstX=x;
-  firstY=y;
-  searchNoFlip(x,y,0,1);
-  firstX=null;
-  firstY=null;
-  opColorFound=false;
-  sameColorFoundSecond=false;
-  tempArray=[];
-  firstX=x;
-  firstY=y;
-  searchNoFlip(x,y,1,1);
-  firstX=null;
-  firstY=null;
-  opColorFound=false;
-  sameColorFoundSecond=false;
-  tempArray=[];
-  firstX=x;
-  firstY=y;
-  searchNoFlip(x,y,1,0);
-  firstX=null;
-  firstY=null;
-  opColorFound=false;
-  sameColorFoundSecond=false;
-  tempArray=[];
-  firstX=x;
-  firstY=y;
-  searchNoFlip(x,y,1,-1);
-  firstX=null;
-  firstY=null;
-  opColorFound=false;
-  sameColorFoundSecond=false;
-  tempArray=[];
-  firstX=x;
-  firstY=y;
-  searchNoFlip(x,y,0,-1);
-  firstX=null;
-  firstY=null;
-}
-
-function searchNoFlip(x,y,h,v){
- if(x+v>=0 && x+v<8 && y+h>=0 && y+h<8 && grid[x+v][y+h]==notCurrentColor){
-    opColorFound = true;
-    if (tempArray.length==0){
-    tempArray.push([x,y]);
-    }
-    tempArray.push([x+v,y+h]);
-    //console.log("Temp Array coordinate: ( "+(x+v)+" , "+(y+h)+" )")
-    searchNoFlip(x+v,y+h,h,v);
-    //console.log("appended to temp");
-  }else if(x+v>=0 && x+v<8 && y+h>=0 && y+h<8 &&grid[x+v][y+h]==currentColor){
-    if(opColorFound==true){
-      sameColorFoundSecond = true;
-      var maxCoinsCaptured = tempArray.length;
-      if(maxCoinsCaptured>0){
-        console.log("Coin Captured coordinate: ( "+firstX+" , "+firstY+" ) Captures: "+maxCoinsCaptured)
-        possibleMoves.push([firstX,firstY,maxCoinsCaptured]);
+        }
       }
     }
   }else{
     //console.log("No tile found")
   }
 }
+
 //changes numbers in the grid array to currentColor value
-function flip(){
-  console.log("flip called");
+function flipTiles(){
+  console.log("flipTiles called");
   for(var i =0;i<tempArray.length;i++){
     grid[tempArray[i][0]][tempArray[i][1]]=currentColor;
   }
-  flipped = true;
+}
+
+//Shows who's turn it is
+function updateDisplay(textToDisplay){
+  console.log("Update display called!");
+  document.getElementById("outputText").innerHTML = textToDisplay;
 }
 
 //Switches the variable values for currentColor and notCurrentColor
@@ -371,19 +318,17 @@ function switchColors(){
   if(currentColor==1){
     currentColor=2;
     notCurrentColor =1;
-    displayTurn();
   }else{
     currentColor=1;
     notCurrentColor =2;
-    displayTurn();
   }
 }
 
-
 //Recounts the number of red and blue discs and displays the score.
 function updateScore(){
-  blueScore=numSquaresColor(1);
-  redScore=numSquaresColor(2);
+  console.log("Update Score called! ");
+  var blueScore=numSquaresColor(1);
+  var redScore=numSquaresColor(2);
   //setText("blueScoreBox",""+blueScore);
   document.getElementById("blueCount").innerHTML="Blue Count (You): "+blueScore;
   //setText("redScoreBox",""+redScore);
@@ -408,25 +353,31 @@ function numSquaresColor(x){
 
 //If red,blue or blank squares are zero the game ends.
 function checkForWin(){
+  console.log("CheckForWin called!")
   var red = numSquaresColor(2);
   var blue = numSquaresColor(1);
   var blank = numSquaresColor(0);
-
-  if(red ==0||blue==0||blank==0){
-    
-    if(redScore>blueScore){
-      //red wins
-      
-      document.getElementById("playerTurn").innerHTML="RED WINS!!!";
-    }else if(blueScore>redScore){
-      //blue wins
-      
-      document.getElementById("playerTurn").innerHTML="BLUE WINS!!!";
+  if(gameIsPlayable==false){
+    if(red>blue){
+      updateDisplay("No more moves. Red wins!");
+    }else if(blue>red){
+      updateDisplay("No more moves. Blue wins!");
     }else{
-      //its a tie
-      
-      document.getElementById("playerTurn").innerHTML="Tie";
-      
+      updateDisplay("No more moves. Its a tie!");
+    }
+  }else{
+    if(red ==0||blue==0||blank==0){
+      if(red>blue){
+        //red wins
+        updateDisplay("RED WINS!!!");
+      }else if(blue>red){
+        //blue wins
+        updateDisplay("BLUE WINS!!!");
+      }else{
+        //its a tie
+        updateDisplay("Tie");
+      }
+      gameIsPlayable=false;
     }
   }
 }
@@ -446,7 +397,11 @@ function playAgain(){
   grid[4][3]=1;
   grid[4][4]=2;
   setBoard();
-
+  updateScore();
+  gameIsPlayable=true;
+  playerTurn=true;
+  playerCanPlay = true;
+  aiCanPlay = true;
 };
 
 
@@ -459,4 +414,14 @@ function updateRadioValue() {
       }
       console.log("AI difficulty set to: "+aiDifficulty);
   }
+}
+
+function isAPossbleMove(x,y){
+  
+  for(var i = 0;i<possibleMoves.length;i++){
+    if(possibleMoves[i][0]==x && possibleMoves[i][1]==y){
+      return true;
+    }
+  }
+  return false;
 }
