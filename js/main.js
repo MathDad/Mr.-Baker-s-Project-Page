@@ -64,7 +64,7 @@ function mainGame(x,y){
       console.log("Start player turn! ");
       findPossibleMoves();
       var clickedPossibleMove = isAPossbleMove(x,y);
-      console.log("Clicked possible Move: "+clickedPossibleMove);
+      //console.log("Clicked possible Move: "+clickedPossibleMove);
       if(possibleMoves.length==0){
         playerCanPlay=false;
       }else if(grid[x][y]==1||grid[x][y]==2){
@@ -107,7 +107,7 @@ function mainGame(x,y){
       switchColors();
       setBoard();
       updateScore();
-      updateDisplay("Blue Turn. You have "+numPlayersMoves+" moves");
+      //updateDisplay("Blue Turn. You have "+numPlayersMoves+" moves");
     }
   }
 }
@@ -118,14 +118,16 @@ function findPossibleMoves(){
   //this loop fills possibleMoves array
   for(var i = 0;i<8;i++){
     for(var j = 0;j<8;j++){
-      searchAround(i,j,false);
+      if(grid[i][j]==0){
+        searchAround(i,j,false);
+      }
     }
   }
 }
 
 //Sets the board after players turn
 function setBoard(){
-  console.log("Set Board called");
+  //console.log("Set Board called");
   for(var i = 0;i<8;i++){
     for(var j = 0;j<8;j++){
 
@@ -146,7 +148,7 @@ function setBoard(){
 function AIturn(){
   //sort 2d array for min values
   if(aiDifficulty==0){
-    console.log("AI Easy Difficulty")
+    //console.log("AI Easy Difficulty")
     var minPossibleMoves = [];
     var minCoinsCaptured = 64;
 
@@ -156,7 +158,7 @@ function AIturn(){
         minCoinsCaptured=possibleMoves[i][2];
       }
     }
-    console.log("Min Captures: "+minCoinsCaptured);
+    //console.log("Min Captures: "+minCoinsCaptured);
 
     console.log("Sorted Possible Moves");
     for(var i = 0;i<possibleMoves.length;i++){
@@ -165,7 +167,7 @@ function AIturn(){
         console.log("( "+possibleMoves[i][0]+" , "+possibleMoves[i][1]+" )");
       }
     }
-    console.log("Min possible array length: "+minPossibleMoves.length)
+    //console.log("Min possible array length: "+minPossibleMoves.length)
     var randomPick=Math.floor(Math.random()*minPossibleMoves.length);
 
     //call search around for first item in possibleMoves array
@@ -176,10 +178,10 @@ function AIturn(){
       searchAround(minPossibleMoves[randomPick][0],minPossibleMoves[randomPick][1],true);
     }
   } else if (aiDifficulty==1){
-    console.log("AI Medium Difficulty")
+    //console.log("AI Medium Difficulty")
     //add medium bot difficulty here
     var randomPick=Math.floor(Math.random()*possibleMoves.length);
-    console.log("AI chose: ( "+possibleMoves[randomPick][0]+" , "+possibleMoves[randomPick][1]+" )")
+    //console.log("AI chose: ( "+possibleMoves[randomPick][0]+" , "+possibleMoves[randomPick][1]+" )")
     if(possibleMoves.length<1){
       switchColors();
     }else{
@@ -187,7 +189,7 @@ function AIturn(){
     }
   }else{
     //add hard bot difficulty here.
-    console.log("AI Hard Difficulty")
+    //console.log("AI Hard Difficulty")
     var maxPossibleMoves = [];
     var maxCoinsCaptured = 0;
     
@@ -196,20 +198,20 @@ function AIturn(){
         maxCoinsCaptured=possibleMoves[i][2];
       }
     }
-    console.log("MaxCoinsCaptured: "+ maxCoinsCaptured);
+    //console.log("MaxCoinsCaptured: "+ maxCoinsCaptured);
     
-    console.log("Sorted Possible Moves")
+    //console.log("Sorted Possible Moves")
     for(var i = 0;i<possibleMoves.length;i++){
       if(possibleMoves[i][2]==maxCoinsCaptured){
         maxPossibleMoves.push([possibleMoves[i][0],possibleMoves[i][1]]);
-        console.log("( "+possibleMoves[i][0]+" , "+possibleMoves[i][1]+" )");
+        //console.log("( "+possibleMoves[i][0]+" , "+possibleMoves[i][1]+" )");
       }
     }
     
     var randomPick=Math.floor(Math.random()*maxPossibleMoves.length);
 
     //call search around for first item in possibleMoves array
-    console.log("AI chose: ( "+maxPossibleMoves[randomPick][0]+" , "+maxPossibleMoves[randomPick][1]+" )");
+    //console.log("AI chose: ( "+maxPossibleMoves[randomPick][0]+" , "+maxPossibleMoves[randomPick][1]+" )");
     if(maxPossibleMoves.length<1){
       switchColors();
     }else{
@@ -283,7 +285,8 @@ function search(x,y,h,v,flip){
         flipTiles();
       } else{
         if(tempArray.length>0){
-          console.log("Coin Captured coordinate: ( "+tempArray[0][0]+" , "+tempArray[0][1]+" ) Captures: "+tempArray.length)
+          //console.log("Coin Captured coordinate: ( "+tempArray[0][0]+" , "+tempArray[0][1]+" ) Captures: "+tempArray.length)
+          
           possibleMoves.push([tempArray[0][0],tempArray[0][1],tempArray.length]);
           if(playerTurn){
             numPlayersMoves=possibleMoves.length;
@@ -301,7 +304,7 @@ function search(x,y,h,v,flip){
 
 //changes numbers in the grid array to currentColor value
 function flipTiles(){
-  console.log("flipTiles called");
+  //console.log("flipTiles called");
   for(var i =0;i<tempArray.length;i++){
     grid[tempArray[i][0]][tempArray[i][1]]=currentColor;
   }
@@ -309,7 +312,8 @@ function flipTiles(){
 
 //Shows who's turn it is
 function updateDisplay(textToDisplay){
-  console.log("Update display called!");
+  //console.log("Update display called!");
+  console.log("Update display called: "+textToDisplay);
   document.getElementById("outputText").innerHTML = textToDisplay;
 }
 
@@ -326,7 +330,7 @@ function switchColors(){
 
 //Recounts the number of red and blue discs and displays the score.
 function updateScore(){
-  console.log("Update Score called! ");
+  //console.log("Update Score called! ");
   var blueScore=numSquaresColor(1);
   var redScore=numSquaresColor(2);
   //setText("blueScoreBox",""+blueScore);
@@ -357,6 +361,8 @@ function checkForWin(){
   var red = numSquaresColor(2);
   var blue = numSquaresColor(1);
   var blank = numSquaresColor(0);
+  console.log("Game is Playable: "+gameIsPlayable);
+  console.log("Red: "+red+" Blue: "+blue+" Blank: "+blank);
   if(gameIsPlayable==false){
     if(red>blue){
       updateDisplay("No more moves. Red wins!");
@@ -378,13 +384,14 @@ function checkForWin(){
         updateDisplay("Tie");
       }
       gameIsPlayable=false;
+      console.log("GameIsPlayable set to false");
     }
   }
 }
 
 //Resets the game board so you can play again
 function playAgain(){
-  console.log("playAgainBtn clicked!");
+  //console.log("playAgainBtn clicked!");
   //reset the board to original setup
   for(var i = 0;i<8;i++){
     for(var j = 0;j<8;j++){
@@ -412,7 +419,7 @@ function updateRadioValue() {
       if(ele[i].checked){
         aiDifficulty=i;
       }
-      console.log("AI difficulty set to: "+aiDifficulty);
+      //console.log("AI difficulty set to: "+aiDifficulty);
   }
 }
 
