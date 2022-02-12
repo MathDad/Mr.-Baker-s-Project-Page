@@ -11,14 +11,12 @@
         <button id="title" onclick="location.href='index.html'">Mr. Baker's Project Page</button>
         <button class="tablinks" onclick="location.href='about.html'">About</button>
         <button class="tablinks" onclick="location.href='BakerbuckBank.html'">Bakerbuck Bank</button>
-        <button class="tablinks" onclick="location.href='othello AI.html'">Othello Vs AI</button>
-        <button class="tablinks" onclick="location.href='othello PvP.html'">Othello PvP</button>
+        <button class="tablinks" onclick="location.href='othello AI.html';">Othello Vs AI</button>
+        <button class="tablinks" onclick="location.href='othello PvP.html';">Othello PvP</button>
         <button class="tablinks" onclick="">Zoinks</button>
       </div>
     </header>
-    
-
-    
+   
 
     <div class="othelloContent" >
       <div class="othelloLeftSide">
@@ -29,6 +27,12 @@
           <h3 id="outputText" ></h3>
         </div>
         <div class="othelloButtonsBox">
+          <div class="difficultyRadioButtons">
+            <h3>Choose the difficulty level</h3>
+            <input type="radio" name="difficulty" value="Easy" onChange="updateRadioValue()" checked>Easy  
+            <input type="radio" name="difficulty" value="Medium" onChange="updateRadioValue()">Medium
+            <input type="radio" name="difficulty" value="Difficult" onChange="updateRadioValue()">Difficult
+          </div>
           <button class ="userControlButton" type="button" onclick="switchColors()">Skip My Turn</button>
           <button class ="userControlButton" type="button" onclick="playAgain()">Start Over/ Play Again</button>
         </div>
@@ -118,8 +122,17 @@
             </div>
           </div>
         </div>
+        <div id="otherButtons">
+          
+          
+
+
+
+        </div>
       </div>
-      <script src="js/othelloPvP.js">
+
+
+      <script src="js/main.js">
       </script>
     </div>
   </body>

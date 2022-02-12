@@ -216,14 +216,18 @@ function updateDisplay(textToDisplay){
 
 //Switches the variable values for currentColor and notCurrentColor
 function switchColors(){
+  var theColor;
   if(currentColor==1){
     currentColor=2;
     notCurrentColor =1;
+    theColor = "#ff5555";
   }else{
     currentColor=1;
     notCurrentColor =2;
+    theColor = "#2596be";
   }
   updateDisplay("It' "+colorNumberToText(currentColor)+"'s turn!");
+  document.getElementById("gameboard").style.borderColor=theColor;
 }
 
 function colorNumberToText(num){
