@@ -44,7 +44,7 @@ var grid = [
 ];
 
 setBoard();
-updateDisplay("It' "+colorNumberToText(currentColor)+"'s turn!");
+updateDisplay("It's "+colorNumberToText(currentColor)+"'s turn!");
 
 
 
@@ -226,7 +226,7 @@ function switchColors(){
     notCurrentColor =2;
     theColor = "#2596be";
   }
-  updateDisplay("It' "+colorNumberToText(currentColor)+"'s turn!");
+  updateDisplay("It's "+colorNumberToText(currentColor)+"'s turn!");
   document.getElementById("gameboard").style.borderColor=theColor;
 }
 

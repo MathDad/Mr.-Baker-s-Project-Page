@@ -118,7 +118,7 @@ body{
 
 header {
   color: #181818;
-  background-color: rgb(66, 76, 85, 0.15);
+  background-color: rgb(66, 76, 85, 0.25);
   font-size: 2rem;
 }
 
@@ -160,9 +160,7 @@ header {
 }
 
 
-hr {
-  border-top: 5px solid rgba(66, 76, 85, 0.15);
-}
+
 
 .page1text {
   color: #000;
@@ -172,9 +170,35 @@ hr {
   text-align: center;
   font-size: 3rem;
 }
+/* Begom Styling of About Page*/
 
+.mainContent{
+  display:flex;
+  flex-direction: column;
+}
 
-/* Begin styling of Othello page */
+.aboutContent{
+  display:flex;
+  flex-direction: row;
+  border: 5px solid rgb(66, 76, 85, 0.15);
+}
+
+.aboutImage{
+  flex:1
+}
+
+.aboutText{
+  flex:3;
+  padding: 15px;
+}
+.aboutText, h2{
+  font-size: 2rem;
+}
+.aboutText, p{
+  font-size: 1.5rem;
+}
+
+/* Begin Styling of Othello Page */
 
 
 
