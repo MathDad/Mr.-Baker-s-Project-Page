@@ -181,13 +181,13 @@ function setBoard(){
 
       if(grid[i][j]==1){
         //setProperty(btnNames[i][j],"image","BlueCircleFinal.png");
-        document.getElementById(btnNames[i][j]).src ="blueDot.png";
+        document.getElementById(btnNames[i][j]).src ="pictures/blueDot.png";
       }else if(grid[i][j]==2){
         //setProperty(btnNames[i][j],"image","RedCircleFinal.png");
-        document.getElementById(btnNames[i][j]).src = "redDot.png";
+        document.getElementById(btnNames[i][j]).src = "pictures/redDot.png";
       }else{
         //setProperty((btnNames[i])[j],"image","Untitled-drawing-(1).png");
-        document.getElementById(btnNames[i][j]).src = "greenBlank.png";
+        document.getElementById(btnNames[i][j]).src = "pictures/greenBlank.png";
       }
     }
   }
