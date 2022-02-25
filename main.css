@@ -106,7 +106,7 @@ input, select {
 html {
   
   font-family: Arial, Geneva, Helvetica, sans-serif;
-  
+  height: 100%;
   
 }
 
@@ -114,6 +114,7 @@ body{
   overflow: auto;
   background: url("pictures/barry-zhou-khjwIW9HH5s-unsplash2.jpg") no-repeat center center fixed;
   background-size: cover;
+  height: 100%;
 }
 
 header {
@@ -162,17 +163,10 @@ header {
 
 
 
-.page1text {
-  color: #000;
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  font-size: 3rem;
-}
+
 /* Begom Styling of About Page*/
 
-.mainContent{
+.aboutPage{
   display:flex;
   flex-direction: column;
 }
@@ -196,6 +190,67 @@ header {
 }
 .aboutText, p{
   font-size: 1.5rem;
+}
+
+/* Begin Styling of Bakerbuck Bank Page */
+.bbbmaincontainer{
+  background-image: url("pictures/MaxPixel.net-Windows-Building-Architecture-washedout.jpg");
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.bbbLeftColumn{
+  flex:1;
+  width: 20%;
+  border:#ff9;
+  display: flex;
+  flex-direction: column;
+  
+}
+.bbbLeftColumn img{
+  max-width: 100%;
+  height: auto;
+}
+.bbbMainContent{
+  border:#28b44c;
+  flex: 3;
+}
+.bbbMainContent h1{
+  margin: 30px 30px 100px 30px;
+  font-size: 2rem;
+}
+
+a {
+  display: inline-block;
+  margin: 30px 0px 30px 210px;
+}
+
+form{
+  font: inherit;
+  font-size: 1.5rem;
+  margin-left: 30px;
+}
+
+input[type=text],input[type=password] {
+  font-size: 1.5rem;
+}
+
+.inputbox {
+  width: 30%;
+  padding: 5px 0px;
+}
+.submitbutton {
+  background-color:#6e98f1;
+;  margin-left: 210px;
+  font-size: 1.5rem;
+}
+.page1text {
+  color: #000;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  font-size: 3rem;
 }
 
 /* Begin Styling of Othello Page */
