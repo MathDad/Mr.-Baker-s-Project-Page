@@ -19,20 +19,27 @@
     <div class="bbbmaincontainer">
       <div class="bbbLeftColumn">
         <img src="pictures/Bakerbuck-logo.jpg"/>
-        <h3></h3>
+        <button>Make A deposit</button>
+        <button onclick="location.href='BakerbuckBankMainScreen.html'">Back</button>
       </div>
       <div class="bbbMainContent" > 
-        <h1>Welcome to Bakerbuck Bank!</h1>
-        <form action="">
-          <label for="username">Username:</label>
-          <input class="inputbox" type="text"><br><br>
-          <label for="password">Password:</label>
-          <input class="inputbox" type="password"><br><br>
-          <input class ="submitbutton" type="submit" value="Submit">
-        </form>
-        <a href="BakerbuckBankCreateAccount.html">Create account here!</a>
+        <h1>Make a Payment</h1>
+        <div class="paymentDropdown">
+          <label for="paymentTypes">Choose a payment type</label>
+          <select name="paymentTypes" id="paymentTypes">
+            <option value="House Payment">House Payment</option>
+            <option value="Car Payment">Car Payment</option>
+            <option value="Utilities">Utilities</option>
+            <option value="Cell/TV/Wifi">Cell/TV/Wifi</option>
+          </select>
+          <br>  
+          <form action="">
+            <label for="Amount:">Amount:</label>
+            <input class="inputbox" type="number" min="1" step="any">
+            <input class ="submitbutton" type="submit" value="Submit">
+          </form>
+        </div>
       </div>  
-      <h3 class="SuccessFailBox"></h3>
     </div>
   </body>
 </html>

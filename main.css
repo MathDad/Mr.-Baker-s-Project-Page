@@ -207,17 +207,53 @@ header {
   flex-direction: column;
   
 }
+
+/* BBB Make a Main Page*/
+.bbbLeftColumn button{
+  
+  background-color:#6e98f1;
+  width:80%;
+  height: 10%;
+  color:black;
+  margin:10px 10px 10px 30px;
+  font-size: 1.5rem;
+  border: 5px solid rgba(27, 31, 35, .15);
+  border-radius: 3px;
+}
+
+.bbbLeftColumn button:hover{
+  background-color:#b6c5e4;
+}
+
 .bbbLeftColumn img{
   max-width: 100%;
   height: auto;
 }
+
 .bbbMainContent{
   border:#28b44c;
   flex: 3;
 }
 .bbbMainContent h1{
-  margin: 30px 30px 100px 30px;
+  margin: 30px 30px 50px 30px;
   font-size: 2rem;
+}
+
+.listOfTransactionsTextBox{
+  background-color: aliceblue;
+  margin: 0px 40px;
+}
+.currentBalanceTextBox{
+  background-color: aliceblue;
+  margin: 0px 40px;
+}
+/* BBB Make a Payment Page*/
+.paymentDropdown{
+  font-size: 1.5rem;
+  margin: 50px;
+}
+#paymentTypes{
+  font-size: 1.5rem;
 }
 
 a {
@@ -337,7 +373,7 @@ input[type=text],input[type=password] {
   background-color: #28b44c;
 }
 
-button {
+.column button {
   appearance: none;
   background-color: #28b44c;
   border: 1px solid rgba(27, 31, 35, .15);
@@ -351,7 +387,7 @@ button {
 }
 
 
-button:hover {
+.column button:hover {
   background-color: #2c974b;
 }
 
