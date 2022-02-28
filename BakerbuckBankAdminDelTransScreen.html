@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Mr. Baker's Project Page</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <header>
+      <div class="tab">
+        <button id="title" onclick="location.href='index.html'">Mr. Baker's Project Page</button>
+        <button class="tablinks" onclick="location.href='about.html'">About</button>
+        <button class="tablinks" onclick="location.href='BakerbuckBankLogin.html'">Bakerbuck Bank</button>
+        <button class="tablinks" onclick="location.href='othello AI.html'">Othello Vs AI</button>
+        <button class="tablinks" onclick="location.href='othello PvP.html'">Othello PvP</button>
+        <button class="tablinks" onclick="">Zoinks</button>
+      </div>
+    </header>
+    <div class="bbbmaincontainer">
+      <div class="bbbLeftColumn">
+        <img class="BBBLogo"  src="pictures/Bakerbuck-logo.jpg"/>
+        <button onclick="location.href='BakerbuckBankAdminAddTransScreen.html'">Add a transaction</button>
+        <button onclick="location.href='BakerbuckBankAdminEditTransScreen.html'">Edit a transaction</button>
+        <button onclick="location.href='BakerbuckBankAdminDelTransScreen.html'">Delete a transaction</button>
+        <button onclick="location.href='BakerbuckBankAdminCheckUserProgressScreen.html'">Check User Progress</button>
+        <button onclick="location.href='BakerbuckBankAdminAddBillScreen.html'">Add a bill</button>
+        <button onclick="location.href='BakerbuckBankMainScreen.html'">Back</button>
+      </div>
+      <div class="bbbMainContent" > 
+        <h1>Admin Page</h1>
+        <div class="depositpaymentcontent">
+          <div class="dropdown">
+            <label for="paymentTypes">Choose a user:</label>
+            <select name="paymentTypes" id="paymentTypes">
+              <option value="user2">user2</option>
+              <option value="user3">user3</option>
+              <option value="Muser4">user4</option>
+            </select>
+          </div>
+          <div class="listOfTransactionsTextBox">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea voluptatem officiis magni deleniti voluptates temporibus dolorum, id tempora ex, dolores necessitatibus porro sed odio consectetur, odit atque vitae accusantium libero.
+            Voluptates ut quasi magnam quisquam. Animi vel dicta nisi soluta tempora recusandae, alias excepturi neque asperiores similique perspiciatis nihil, laudantium architecto sint totam pariatur velit ratione iure ab officia voluptas.
+            Mollitia, labore nostrum reprehenderit tempore sit necessitatibus non dolor expedita. Vel quae dolor nemo vitae modi exercitationem aut, minima ullam reprehenderit expedita eos laboriosam numquam, nulla delectus quis maxime saepe.</p>
+          </div>
+          <div class="dropdown">
+            <label for="paymentTypes">Choose a transaction:</label>
+            <select name="paymentTypes" id="paymentTypes">
+              <option value="user2">transaction id 1</option>
+              <option value="user3">transaction id 2</option>
+              <option value="Muser4">transaction id 3</option>
+            </select>
+          </div>
+          <div class="amountInputForm">
+            <form action="">
+              <label for="Datestamp:">Datestamp</label>
+              <input class="inputbox" type="number" min="1" step="any"><br><br>
+              <label for="Description:">Description</label>
+              <input class="inputbox" type="text" ><br><br>
+              <label for="Type:">Type</label>
+              <input class="inputbox" type="text" ><br><br>
+              <label for="Amount:">Amount</label>
+              <input class="inputbox" type="number" min="1" step="any"><br><br>
+              <input class ="submitbutton" type="submit" value="Update">
+              <input class ="submitbutton" type="submit" value="Delete">
+            </form>
+          </div>
+          <br>
+          <div class="amountInputForm">
+            <form action="">
+              <label for="Datestamp:">Datestamp</label>
+              <input class="inputbox" type="number" min="1" step="any"><br><br>
+              <label for="Description:">Description</label>
+              <input class="inputbox" type="text" ><br><br>
+              <label for="Type:">Type</label>
+              <input class="inputbox" type="text" ><br><br>
+              <label for="Amount:">Amount</label>
+              <input class="inputbox" type="number" min="1" step="any"><br><br>
+              <input class ="submitbutton" type="submit" value="Add">
+            </form>
+          </div>  
+        </div>
+      </div>  
+    </div>
+  </body>
+</html>
