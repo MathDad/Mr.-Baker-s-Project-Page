@@ -204,6 +204,7 @@ header {
   flex:1;
   width: 20%;
   background-color:  rgba(66, 76, 85, 0.25);
+  border-radius: 20 px;
   display: flex;
   flex-direction: column;
   
@@ -274,7 +275,7 @@ header {
 .adminMaincontent{
   padding:20px;
   margin: 20px;
-  border-radius: 5px;
+  border-radius: 20px;
   background-color: rgba(66, 76, 85, 0.5);
 }
 
@@ -294,7 +295,7 @@ option,select,input{
 
 .submitbutton {
   background-color:#6e98f1;
-  margin-left: 210px;
+  margin-left: 100px;
   font-size: 1.5rem;
 }
 .page1text {
