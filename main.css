@@ -241,18 +241,15 @@ header {
   margin: 30px 30px 50px 30px;
   font-size: 2rem;
 }
-.depositpaymentcontent{
-  background-color: rgba(66, 76, 85, 0.5);
-  padding: 10px 0px;
-}
+
 .listOfTransactionsTextBox{
-  background-color: rgba(66, 76, 85, 0.5);
+  background-color: rgba(66, 76, 85, 0.25);
   padding:10px;
   border-radius: 5px;
   margin: 0px 40px;
 }
 .currentBalanceTextBox{
-  background-color: rgba(66, 76, 85, 0.5);
+  background-color: rgba(66, 76, 85, 0.25);
   margin: 0px 40px;
   padding: 10px;
   border-radius: 5px;
@@ -267,15 +264,11 @@ header {
   padding: 0px 20px;
 }
 
-.amountInputForm{
-  margin-left:30px;
-}
-
 .adminMaincontent{
   padding:20px;
   margin: 20px;
   border-radius: 5px;
-  background-color: rgba(66, 76, 85, 0.5);
+  background-color: rgba(66, 76, 85, 0.25);
 }
 
 a {
@@ -411,8 +404,9 @@ option,select,input{
 
 
 
-.difficultyRadioButtons {
-  text-align: center;
+.difficultyRadioButtons, label {
+  text-align: left;
+  margin-left: 30px;
   padding-bottom:10px;
   font-size: 20px;
 }

@@ -432,3 +432,30 @@ function isAPossbleMove(x,y){
   }
   return false;
 }
+
+function playerTurnSkipped(){
+  switchColors();
+  if(gameIsPlayable){
+    //aiTurn
+    playerTurn=false;
+    if(playerCanPlay==false && aiCanPlay==false){
+      //end the game
+      gameIsPlayable=false;
+      checkForWin();
+    } else{
+      console.log("Start AI turn! ");
+      findPossibleMoves();
+      if(possibleMoves.length==0){
+        aiCanPlay =false;
+      }else{
+        AIturn();
+      }
+      
+      checkForWin();
+      switchColors();
+      setBoard();
+      updateScore();
+      //updateDisplay("Blue Turn. You have "+numPlayersMoves+" moves");
+    }
+  }
+}

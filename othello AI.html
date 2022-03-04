@@ -29,11 +29,14 @@
         <div class="othelloButtonsBox">
           <div class="difficultyRadioButtons">
             <h3>Choose the difficulty level</h3>
-            <input type="radio" name="difficulty" value="Easy" onChange="updateRadioValue()" checked>Easy  
-            <input type="radio" name="difficulty" value="Medium" onChange="updateRadioValue()">Medium
-            <input type="radio" name="difficulty" value="Difficult" onChange="updateRadioValue()">Difficult
+            <label for="difficulty">Easy  </label>
+            <input type="radio" name="difficulty" value="Easy" onChange="updateRadioValue()" checked><br><br>
+            <label for="difficulty">Medium</label>
+            <input type="radio" name="difficulty" value="Medium" onChange="updateRadioValue()"><br><br>
+            <label for="difficulty">Difficult</label>
+            <input type="radio" name="difficulty" value="Difficult" onChange="updateRadioValue()"><br><br>
           </div>
-          <button class ="userControlButton" type="button" onclick="switchColors()">Skip My Turn</button>
+          <button class ="userControlButton" type="button" onclick="playerTurnSkipped()">Skip My Turn</button>
           <button class ="userControlButton" type="button" onclick="playAgain()">Start Over/ Play Again</button>
         </div>
       </div>

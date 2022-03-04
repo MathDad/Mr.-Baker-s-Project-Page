@@ -28,14 +28,21 @@
       </div>
       <div class="bbbMainContent" > 
         <h1>Admin Page - Add a bill</h1>
-        <div class="depositpaymentcontent">
-          
-          
-          <p>Add a bill</p>
-          
-          
-          
-        
+        <div class="adminMaincontent">
+          <div class="inputForm">
+            <form action=""></form>
+              <label for="paymentTypes">Choose a payment type</label>
+              <select name="paymentTypes" id="paymentTypes">
+                <option value="House Payment">House Payment</option>
+                <option value="Car Payment">Car Payment</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Cell/TV/Wifi">Cell/TV/Wifi</option>
+              </select><br><br>
+              <label for="date">Date:</label>
+              <input type="date" name="date" id="date"><br><br>
+              <input class ="submitbutton" type="submit" value="Submit">
+            </form>
+          </div>
         </div>
       </div>  
     </div>
