@@ -28,34 +28,23 @@
         <button onclick="location.href='BakerbuckBankMainScreen.html'">Back</button>
       </div>
       <div class="bbbMainContent" > 
-        <h1>Admin Page - Add a transaction</h1>
+        <h1>Admin Page - Add a bill</h1>
         <div class="adminMaincontent">
           <div class="inputForm">
-            <form action="">
-              <label for="paymentTypes">Choose a user:</label>
-              <select name="paymentTypes" id="paymentTypes">
-                <option value="user2">user2</option>
-                <option value="user3">user3</option>
-                <option value="Muser4">user4</option>
-              </select><br><br>
-              <label for="Description:">Description</label>
-              <select name="Description">
-                <option value="Utilities Bill">Utilities Bill</option>
-                <option value="House Payment">House Payment</option>
-                <option value="Insurance Bill">Insurance Bill</option>
-                <option value="Water">Water</option>
-                <option value="Trash">Trash</option>
-                <option value="Car Payment">Car Payment</option>
-                <option value="Cell/TV/Wifi">Cell/TV/Wifi</option>
-                <option value="Gasoline">Gasoline</option>
-                <option value="Groceries">Groceries</option>
+            <form action=""></form>
+              <label for="incomeTypes">Choose a income type</label>
+              <select name="incomeTypes" id="incomeTypes">
+                <option value="Payroll">Payroll</option>
+                <option value="Bonus">Bonus</option>
                 <option value="Misc.">Misc.</option>
               </select><br><br>
+              <label for="date">Date:</label>
+              <input type="date" name="date" id="date"><br><br>
               <label for="Amount:">Amount</label>
-              <input class="inputForm" type="number" min="1" step="any"><br><br>
-              <input class ="submitbutton" type="submit" value="Add">
+              <input class="inputbox" type="number" min="1" step="any"><br><br>
+              <input class ="submitbutton" type="submit" value="Submit">
             </form>
-          </div>  
+          </div>
         </div>
       </div>  
     </div>
