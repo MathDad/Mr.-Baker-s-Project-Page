@@ -268,13 +268,8 @@ header {
 .adminMaincontent{
   padding:20px;
   margin: 20px;
-<<<<<<< HEAD
-  border-radius: 5px;
-  background-color: rgba(66, 76, 85, 0.25);
-=======
   border-radius: 20px;
   background-color: rgba(66, 76, 85, 0.5);
->>>>>>> fbe6deb09099a298210f4f7b51213c363fc1e503
 }
 
 a {
