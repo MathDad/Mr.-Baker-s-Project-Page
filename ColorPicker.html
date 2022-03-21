@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Mr. Baker's Project Page</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <header>
+      <div class="tab">
+        <button id="title" onclick="location.href='index.html'">Mr. Baker's Project Page</button>
+        <button class="tablinks" onclick="location.href='about.html'">About</button>
+        <button class="tablinks" onclick="location.href='BakerbuckBankLogin.html'">Bakerbuck Bank</button>
+        <button class="tablinks" onclick="location.href='othello AI.html'">Othello Vs AI</button>
+        <button class="tablinks" onclick="location.href='othello PvP.html'">Othello PvP</button>
+        <button class="tablinks" onclick="">Zoinks</button>
+      </div>
+    </header>
+    <div class="mainContent">
+      <img src="https://studio.code.org/assets/logo-2acd4ebc69c447786b866b98034bb3c0777b5f67cd8bd7955e97bba0b16f2bd1.svg" class="image123">
+      <div class="inputURL">
+        <form action="">
+          <input type="url" name="url" id="url" placeholder="Enter image URL" pattern="https://.*" size="30" >
+          <input class ="submitbutton" type="submit" value="Upload" onclick="changeURL()"><br><br>
+        </form>
+      </div>
+      <div class="outputText">
+        <img>
+        <p>RGB: (0,0,0)</p>
+        <p>HEX: #000000</p> 
+      </div>
+      <canvas id="myCanvas" width="600" height="400"></canvas>
+      <script src="js/colorPicker.js">
+      </script>
+    </div>
+  </body>
+</html>

@@ -359,7 +359,7 @@ option,select,input{
 
 #gameboard{
   width: 448px;
-  background-color: rgba(66, 76, 85, 0.80);;
+  background-color: rgba(66, 76, 85, 0.80);
   border: 5px solid ;
   border-color: #2596be;
   border-radius: 10px;
@@ -410,4 +410,40 @@ option,select,input{
   margin-left: 30px;
   padding-bottom:10px;
   font-size: 20px;
+}
+
+
+canvas {
+  border: 15px solid #eaeaeb;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 600px;
+  margin-bottom: 10px;
+}
+
+.inputURL {
+  background-color: rgba(66, 76, 85, 0.40);
+  border-radius: 20px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding:20px;
+  width:700px;
+}
+
+.outputText{
+  background-color: rgba(66, 76, 85, 0.40);
+  border-radius: 20px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding:20px;
+  width: 600px;
 }
