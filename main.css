@@ -447,3 +447,8 @@ canvas {
   padding:20px;
   width: 600px;
 }
+
+#importImage {
+  width:auto;
+  height:400px;
+}
