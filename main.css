@@ -436,19 +436,4 @@ canvas {
   width:700px;
 }
 
-.outputText{
-  background-color: rgba(66, 76, 85, 0.40);
-  border-radius: 20px;
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  padding:20px;
-  width: 600px;
-}
 
-#importImage {
-  width:auto;
-  height:400px;
-}

@@ -19,8 +19,8 @@ function getEventLocation(element,event){
     var pos= getElementPosition(element);
 
     return{
-        x: (event.pageX-pos.x),
-        y: (event.pageY-pos.y)
+        x: (event.pageX - pos.x),
+        y: (event.pageY - pos.y)
     };
 }
 
@@ -30,9 +30,16 @@ function rgbToHex(r,g,b){
     return ((r<<16)|(g<<8)| b).toString(16);
 }
 
-function drawImageFromWebUrl(sourceurl){
-    var img = new Image();
+var downloadedImg;
 
+function drawImageFromWebUrl(inputURL){
+    downloadedImg="";
+    startDownload(inputURL);
+    
+    var img = new Image();
+    
+    
+    //img.crossOrigin = "Anonymous";
     img.addEventListener("load",function(){
         canvas.getContext("2d").drawImage(
             img,
@@ -47,7 +54,34 @@ function drawImageFromWebUrl(sourceurl){
         );
     });
 
-    img.setAttribute("src",sourceurl);
+    img.setAttribute("src",downloadedImg);
+}
+
+function startDownload(sourceurl) {
+    let imageURL = sourceurl;
+  
+    downloadedImg = new Image;
+    downloadedImg.crossOrigin = "Anonymous";
+    downloadedImg.addEventListener("load", imageReceived, false);
+    downloadedImg.src = imageURL;
+}
+
+function imageReceived() {
+    let canvas = document.createElement("canvas");
+    let context = canvas.getContext("2d");
+  
+    canvas.width = downloadedImg.width;
+    canvas.height = downloadedImg.height;
+  
+    context.drawImage(downloadedImg, 0, 0);
+    imageBox.appendChild(canvas);
+  
+    try {
+      localStorage.setItem("saved-image-example", canvas.toDataURL("image/png"));
+    }
+    catch(err) {
+      console.log("Error: " + err);
+    }
 }
 
 drawImageFromWebUrl("https://cdn.britannica.com/70/191970-050-1EC34EBE/Color-wheel-light-color-spectrum.jpg");
@@ -55,7 +89,7 @@ drawImageFromWebUrl("https://cdn.britannica.com/70/191970-050-1EC34EBE/Color-whe
 canvas.addEventListener("mousemove",function(e){
     let eventLocation=getEventLocation(this,e);
     let coord = "x="+eventLocation.x+",y="+eventLocation.y;
-
+    console.log("Event listener working!");
     let context = this.getContext('2d');
     let pixelData = context.getImageData(eventLocation.x,eventLocation.y,1,1).data;
 
@@ -70,7 +104,6 @@ canvas.addEventListener("mousemove",function(e){
     let hex= "#"+("000000"+rgbToHex(pixelData[0],pixelData[1],pixelData[2])).slice(-6);
 
     document.getElementById("status").innerHTML = coord;
-    document.getElementById("color").style.backgroundColor = hex;
     document.getElementById("myCanvas").style.borderColor = hex;
 },false);
 
@@ -80,8 +113,9 @@ function changeURL(){
     var theURL = document.getElementById("url").value;
     if(theURL===""){
         theURL="https://cdn.britannica.com/70/191970-050-1EC34EBE/Color-wheel-light-color-spectrum.jpg";
+    }else{
+        drawImageFromWebUrl(theURL);
     }
-    document.getElementById("importImage").src=theURL;
     console.log("This worked!")
 }
 

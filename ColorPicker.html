@@ -19,23 +19,12 @@
     <div class="mainContent">
       
       <div class="inputURL">
-        <canvas id="myCanvas" width="600" height="400">
-          
-        </canvas><br><br>
-        <div id="status"></div>
-        <br>
-        <div id="color" style="width:80px; height:80px"></div>
-        <p>Move the mouse over the picture</p>
-        <img src="https://studio.code.org/assets/logo-2acd4ebc69c447786b866b98034bb3c0777b5f67cd8bd7955e97bba0b16f2bd1.svg" id="importImage">
+        <p>Move the mouse over the picture</p><br>
+        <canvas id="myCanvas" width="600" height="400"></canvas><br>
+        <div id="status"></div><br>
         <input type="url" name="url" id="url" placeholder="Enter image URL" size="30" >  
         <button type="button" onclick="changeURL()">Update</button>
       </div>
-      <div class="outputText">
-        <img>
-        <p>RGB: (0,0,0)</p>
-        <p>HEX: #000000</p> 
-      </div>
-      
       <script src="js/colorPicker.js">
       </script>
     </div>
