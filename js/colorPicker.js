@@ -1,7 +1,22 @@
 //
 //Color Picker
 //
+
 var canvas = document.getElementById("myCanvas");
+context = canvas.getContext('2d');
+
+make_base();
+
+function make_base()
+{
+  base_image = new Image();
+  base_image.src = 'https://www.sessions.edu/wp-content/themes/divi-child/color-calculator/wheel-3-rgb.png';
+  //base_image.crossOrigin = "Anonymous";
+  base_image.onload = function(){
+    context.drawImage(base_image, 0, 0, 400, 400);
+    
+  }
+}
 
 function getElementPosition(obj){
     var curleft = 0,curtop=0;
@@ -30,16 +45,12 @@ function rgbToHex(r,g,b){
     return ((r<<16)|(g<<8)| b).toString(16);
 }
 
-var downloadedImg;
+/*
 
 function drawImageFromWebUrl(inputURL){
-    downloadedImg="";
-    startDownload(inputURL);
     
     var img = new Image();
-    
-    
-    //img.crossOrigin = "Anonymous";
+    img.crossOrigin = "Anonymous";
     img.addEventListener("load",function(){
         canvas.getContext("2d").drawImage(
             img,
@@ -53,45 +64,26 @@ function drawImageFromWebUrl(inputURL){
             canvas.height,
         );
     });
-
-    img.setAttribute("src",downloadedImg);
+    
+    img.setAttribute("src",inputURL);
 }
+*/
 
-function startDownload(sourceurl) {
-    let imageURL = sourceurl;
-  
-    downloadedImg = new Image;
-    downloadedImg.crossOrigin = "Anonymous";
-    downloadedImg.addEventListener("load", imageReceived, false);
-    downloadedImg.src = imageURL;
-}
 
-function imageReceived() {
-    let canvas = document.createElement("canvas");
-    let context = canvas.getContext("2d");
-  
-    canvas.width = downloadedImg.width;
-    canvas.height = downloadedImg.height;
-  
-    context.drawImage(downloadedImg, 0, 0);
-    imageBox.appendChild(canvas);
-  
-    try {
-      localStorage.setItem("saved-image-example", canvas.toDataURL("image/png"));
-    }
-    catch(err) {
-      console.log("Error: " + err);
-    }
-}
-
-drawImageFromWebUrl("https://cdn.britannica.com/70/191970-050-1EC34EBE/Color-wheel-light-color-spectrum.jpg");
-
-canvas.addEventListener("mousemove",function(e){
+canvas.addEventListener("mousedown",function(e){
     let eventLocation=getEventLocation(this,e);
     let coord = "x="+eventLocation.x+",y="+eventLocation.y;
-    console.log("Event listener working!");
+    console.log("coord: "+coord);
     let context = this.getContext('2d');
     let pixelData = context.getImageData(eventLocation.x,eventLocation.y,1,1).data;
+
+    let rgbValue = "";
+    let hex = "";
+    if(pixelData[3]==0){
+        rgbValue+="rgba( "+pixelData[0]+" , "+pixelData[1]+" , "+pixelData[2]+" , "+pixelData[3]+" )";
+    } else{
+        rgbValue+="rgb( "+pixelData[0]+" , "+pixelData[1]+" , "+pixelData[2]+" )";
+    }
 
     if(
         (pixelData[0]==0)&&
@@ -99,20 +91,27 @@ canvas.addEventListener("mousemove",function(e){
         (pixelData[2]==0)&&
         (pixelData[3]==0)) 
     {
-        coord+=" (transparent color detected, cannot be converted to HEX)";
+        hex+="Transparent color detected, cannot be converted to HEX";
+        
+    }else{
+        hex= "#"+("000000"+rgbToHex(pixelData[0],pixelData[1],pixelData[2])).slice(-6);
     }
-    let hex= "#"+("000000"+rgbToHex(pixelData[0],pixelData[1],pixelData[2])).slice(-6);
+    
 
     document.getElementById("status").innerHTML = coord;
+    document.getElementById("rgbData").innerHTML = rgbValue;
+    document.getElementById("hexData").innerHTML = hex;
     document.getElementById("myCanvas").style.borderColor = hex;
 },false);
 
-
+/*
 function changeURL(){
     
     var theURL = document.getElementById("url").value;
+    console.log("theURL: "+theURL);
     if(theURL===""){
-        theURL="https://cdn.britannica.com/70/191970-050-1EC34EBE/Color-wheel-light-color-spectrum.jpg";
+        theURL="E:\HTMLProjects\Project2\Mr.-Baker-s-Project-Page\pictures\chromatic-wheel-2.png";
+        drawImageFromWebUrl(theURL);
     }else{
         drawImageFromWebUrl(theURL);
     }
@@ -120,3 +119,14 @@ function changeURL(){
 }
 
 
+//https://cdn.britannica.com/70/191970-050-1EC34EBE/Color-wheel-light-color-spectrum.jpg
+
+window.onload = function() {
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var img = document.getElementById("colorwheel");
+    void ctx.drawImage(img, 0, 0,img.width,img.height,0,0,canvas.width,canvas.height);
+};
+
+
+*/
