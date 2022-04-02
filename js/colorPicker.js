@@ -2,19 +2,20 @@
 //Color Picker
 //
 
+
 var canvas = document.getElementById("myCanvas");
-context = canvas.getContext('2d');
 
 make_base();
 
 function make_base()
 {
+  
+  context = canvas.getContext('2d');
   base_image = new Image();
-  base_image.src = 'https://www.sessions.edu/wp-content/themes/divi-child/color-calculator/wheel-3-rgb.png';
+  base_image.src = 'pictures/chromatic-wheel-2.png';
   //base_image.crossOrigin = "Anonymous";
   base_image.onload = function(){
     context.drawImage(base_image, 0, 0, 400, 400);
-    
   }
 }
 
@@ -71,6 +72,7 @@ function drawImageFromWebUrl(inputURL){
 
 
 canvas.addEventListener("mousedown",function(e){
+    make_base();
     let eventLocation=getEventLocation(this,e);
     let coord = "x="+eventLocation.x+",y="+eventLocation.y;
     console.log("coord: "+coord);
@@ -96,7 +98,8 @@ canvas.addEventListener("mousedown",function(e){
     }else{
         hex= "#"+("000000"+rgbToHex(pixelData[0],pixelData[1],pixelData[2])).slice(-6);
     }
-    
+    console.log("RGB vale: "+rgbValue);
+    console.log("Hex value: "+hex);
 
     document.getElementById("status").innerHTML = coord;
     document.getElementById("rgbData").innerHTML = rgbValue;
