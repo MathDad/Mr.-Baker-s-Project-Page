@@ -146,20 +146,20 @@ header {
   transition: 0.5s;
 }
 
+
 /* Change background color of buttons on hover */
 .tab button:hover {
   background-color:inherit;
   color:white;
 }
 
-.tab #title {
+#title {
   flex:3;
   text-align: left;
   margin-top: auto;
   margin-bottom: auto;
   font-size: 2rem;
 }
-
 
 
 
@@ -183,6 +183,8 @@ header {
 
 .aboutImage{
   flex:1;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .aboutImage img{
@@ -318,7 +320,7 @@ option,select,input{
   
   padding-left: 60px;
   display:flex;
-  
+  flex-direction: row;
 }
 
 
@@ -326,11 +328,12 @@ option,select,input{
   flex:1;
   display: flex;
   flex-direction: column;
+  order: 1;
 }
 
 .othelloRightSide{
   flex:1;
-  
+  order: 2
 }
 
 .othelloHeader {
@@ -451,8 +454,10 @@ canvas {
   flex:1;
 }
 #myCanvas{
-  width:350px;
+  width:450px;
 }
+
+
 #ColorPickerRightSide{
   flex:1;
   margin-top:100px;
@@ -466,6 +471,7 @@ canvas {
   background-color: #ffffff;
   font-size: 1.5rem;
   padding: 10px;
+  margin-left: 10px;
 }
 #colorwheel{
   border: none;
@@ -512,4 +518,78 @@ ul{
 p{
   font-size: 1.25rem;
   padding-left: 40px;
+}
+
+/* Media Queries*/
+@media all and (max-width: 1000px){
+  .tab button {
+    font-size: 0.75rem;
+  }
+  #title {
+    font-size: 1.25rem;
+  }
+  #myCanvas{
+    width:350px;
+  }
+  #colorPickerHeader {
+    font-size: 1.5rem;
+  }
+  .othelloContent{
+    flex-direction: column;
+  }
+  .othelloLeftSide{
+    order: 2;
+    width: 480px;
+  }
+  input{
+    width: 20px;
+  }
+  .othelloRightSide{
+    order: 1;
+  }
+  .OthelloTextLabel {
+    font-size: 1.5rem;
+    padding:3px;
+  }
+  
+  .difficultyRadioButtons{
+    margin:0px;
+  }
+}
+@media all and (max-width: 750px){
+  .inputURL {
+    flex-direction: column;
+  }
+  #ColorPickerRightSide{
+    margin-top: 10px;
+  }
+  #colorPickerHeader {
+    font-size: 1.25 rem;
+  }
+  .aboutContent{
+    flex-direction: column;
+  }
+  .OthelloTextLabel {
+    font-size: 1.25rem;
+    padding:0px;
+  }
+  .othelloHeader{
+    font-size: 1.5rem;
+  }
+}
+@media all and (max-width: 480px){
+  .tab button {
+    font-size: 0.5rem;
+  }
+  #title {
+    font-size: 1rem;
+  }
+  #myCanvas{
+    width:300px;
+  }
+  .OthelloTextLabel {
+    font-size: 1rem;
+    padding:3px;
+  }
+  
 }

@@ -17,27 +17,27 @@
       </div>
     </header>
    
-
+    <h2 class="othelloHeader">Play Othello against a friend!</h2>
     <div class="othelloContent" >
+      
       <div class="othelloLeftSide">
-        <h2 class="othelloHeader">Play Othello against a friend!</h2>
         <div class="othelloDisplay">
-          <h3 id="blueCount" >Blue Tiles Count: 0</h3>
-          <h3 id="redCount" >Red tiles Count: 0</h3>
-          <h3 id="outputText" ></h3>
+          <h3 class="OthelloTextLabel" id="blueCount" >Blue Tiles Count: 0</h3>
+          <h3 class="OthelloTextLabel" id="redCount" >Red tiles Count: 0</h3>
+          <h3 class="OthelloTextLabel"  id="outputText" ></h3>
         </div>
         <div class="othelloButtonsBox">
           <div class="difficultyRadioButtons">
-            <h3>Choose the difficulty level</h3>
-            <label for="difficulty">Easy  </label>
-            <input type="radio" name="difficulty" value="Easy" onChange="updateRadioValue()" checked><br><br>
-            <label for="difficulty">Medium</label>
-            <input type="radio" name="difficulty" value="Medium" onChange="updateRadioValue()"><br><br>
-            <label for="difficulty">Difficult</label>
-            <input type="radio" name="difficulty" value="Difficult" onChange="updateRadioValue()"><br><br>
+            <h3 class="OthelloTextLabel" >Choose the difficulty level</h3>
+            <label class="OthelloTextLabel"  for="difficulty">Easy  </label>
+            <input class="radiobutton" type="radio" name="difficulty" value="Easy" onChange="updateRadioValue()" checked><br>
+            <label class="OthelloTextLabel"  for="difficulty">Medium</label>
+            <input class="radiobutton" type="radio" name="difficulty" value="Medium" onChange="updateRadioValue()"><br>
+            <label class="OthelloTextLabel"  for="difficulty">Difficult</label>
+            <input class="radiobutton" type="radio" name="difficulty" value="Difficult" onChange="updateRadioValue()"><br>
           </div>
-          <button class ="userControlButton" type="button" onclick="playerTurnSkipped()">Skip My Turn</button>
-          <button class ="userControlButton" type="button" onclick="playAgain()">Start Over/ Play Again</button>
+          <button class="OthelloTextLabel"  type="button" onclick="playerTurnSkipped()">Skip My Turn</button>
+          <button class="OthelloTextLabel"  type="button" onclick="playAgain()">Start Over/ Play Again</button>
         </div>
       </div>
       <div class="othelloRightSide">
