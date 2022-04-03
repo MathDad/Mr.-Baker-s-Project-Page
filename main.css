@@ -411,6 +411,13 @@ option,select,input{
   
 }
 
+#biggerbutton, #smallerbutton{
+  margin: 5px;
+  width: 125px;
+  height: 40px;
+  font-size: 1rem;
+
+}
 
 .column button:hover {
   background-color: #2c974b;

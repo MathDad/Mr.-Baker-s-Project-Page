@@ -333,6 +333,7 @@ function isAPossbleMove(x,y){
   return false;
 }
 
+
 function changeScreenSize(direction){
 
   console.log("the Direction: "+direction);
@@ -351,6 +352,27 @@ function changeScreenSize(direction){
   }
 
   console.log("gameboard width: "+gameboardWidth+"px");
-  document.documentElement.style.setProperty('--gameboardwidth', gameboardWidth +'px');
+  //document.documentElement.style.setProperty('--gameboardwidth', gameboardWidth +'px');
+  document.getElementById("gameboard").style.width = gameboardWidth +'px';
   
+  var rowWidth=gameboardWidth-3;
+  var rows=document.getElementsByClassName("row");
+  for(var i = 0;i<rows.length;i++){
+    rows[i].style.width = rowWidth+'px';
+  }
+
+  var buttonWidth = (gameboardWidth/8)-6;
+  var buttons = document.getElementsByClassName("othellobutton");
+  for(var i = 0;i<buttons.length;i++){
+    buttons[i].style.width = buttonWidth+'px';
+    buttons[i].style.height = buttonWidth+'px';
+  }
+  var numtoletter=["a","b","c","d","e","f","g","h"];
+  for(var i = 0;i<8;i++){
+    for(var j = 0;j<8;j++){
+      var theid = numtoletter[i]+j;
+      document.getElementById(theid).style.width = gameboardWidth+'px';
+      document.getElementById(theid).style.height = gameboardWidth+'px';
+    }
+  }
 }

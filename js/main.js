@@ -493,4 +493,13 @@ function changeScreenSize(direction){
     buttons[i].style.width = buttonWidth+'px';
     buttons[i].style.height = buttonWidth+'px';
   }
+
+  var numtoletter=["a","b","c","d","e","f","g","h"];
+  for(var i = 0;i<8;i++){
+    for(var j = 0;j<8;j++){
+      var theid = numtoletter[i]+j;
+      document.getElementById(theid).style.width = gameboardWidth+'px';
+      document.getElementById(theid).style.height = gameboardWidth+'px';
+    }
+  }
 }
