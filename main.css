@@ -370,6 +370,7 @@ option,select,input{
 }
 
 
+
 #gameboard{
   width: 448px;
   background-color: rgba(66, 76, 85, 0.80);
@@ -392,12 +393,12 @@ option,select,input{
   justify-content: center;
   box-sizing: border-box;
   max-width: 100%;
-  max-height: 85%;
+  max-height: 80%;
   
   background-color: #28b44c;
 }
 
-.column button {
+.othellobutton {
   appearance: none;
   background-color: #28b44c;
   border: 1px solid rgba(27, 31, 35, .15);

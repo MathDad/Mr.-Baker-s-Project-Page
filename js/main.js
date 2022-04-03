@@ -459,3 +459,38 @@ function playerTurnSkipped(){
     }
   }
 }
+
+function changeScreenSize(direction){
+
+  console.log("the Direction: "+direction);
+  
+  var gameboardProperties = document.getElementById("gameboard");
+  var gameboardPositionInfo = gameboardProperties.getBoundingClientRect();
+  var gameboardWidth = gameboardPositionInfo.width - 16;
+  
+  console.log("gameboard width: "+gameboardWidth);
+  
+  if(gameboardWidth>440 && direction==-1){
+    gameboardWidth-=40;
+  }
+  if(gameboardWidth<1000 && direction==1){
+    gameboardWidth+=40;
+  }
+
+  console.log("gameboard width: "+gameboardWidth+"px");
+  //document.documentElement.style.setProperty('--gameboardwidth', gameboardWidth +'px');
+  document.getElementById("gameboard").style.width = gameboardWidth +'px';
+  
+  var rowWidth=gameboardWidth-3;
+  var rows=document.getElementsByClassName("row");
+  for(var i = 0;i<rows.length;i++){
+    rows[i].style.width = rowWidth+'px';
+  }
+
+  var buttonWidth = (gameboardWidth/8)-6;
+  var buttons = document.getElementsByClassName("othellobutton");
+  for(var i = 0;i<buttons.length;i++){
+    buttons[i].style.width = buttonWidth+'px';
+    buttons[i].style.height = buttonWidth+'px';
+  }
+}

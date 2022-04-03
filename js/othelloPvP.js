@@ -332,3 +332,25 @@ function isAPossbleMove(x,y){
   }
   return false;
 }
+
+function changeScreenSize(direction){
+
+  console.log("the Direction: "+direction);
+  
+  var gameboardProperties = document.getElementById("gameboard");
+  var gameboardPositionInfo = gameboardProperties.getBoundingClientRect();
+  var gameboardWidth = gameboardPositionInfo.width - 16;
+  
+  console.log("gameboard width: "+gameboardWidth);
+  
+  if(gameboardWidth>440 && direction==-1){
+    gameboardWidth-=40;
+  }
+  if(gameboardWidth<1000 && direction==1){
+    gameboardWidth+=40;
+  }
+
+  console.log("gameboard width: "+gameboardWidth+"px");
+  document.documentElement.style.setProperty('--gameboardwidth', gameboardWidth +'px');
+  
+}
