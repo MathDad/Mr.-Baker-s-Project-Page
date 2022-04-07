@@ -10,14 +10,14 @@
       <div class="tab">
         <button id="title" onclick="location.href='index.html'">Mr. Baker's Project Page</button>
         <button class="tablinks" onclick="location.href='about.html'">About</button>
-        <button class="tablinks" onclick="location.href='othello AI.html'">Othello Vs AI</button>
-        <button class="tablinks" onclick="location.href='othello PvP.html'">Othello PvP</button>
+        <button class="tablinks" onclick="location.href='othello AI.html'">Othello Vs Computer</button>
+        <button class="tablinks" onclick="location.href='othello PvP.html'">Othello with Friends</button>
         <button class="tablinks" onclick="location.href='ColorPicker.html'">Color Picker</button>
         <button class="tablinks" onclick="location.href='resume.html'">Resume</button>
       </div>
     </header>
    
-    <h2 class="othelloHeader">Play Othello against a friend!</h2>
+    <h2 class="othelloHeader">Play Othello against the computer!</h2>
     <div class="othelloContent" >
       
       <div class="othelloLeftSide">
@@ -30,14 +30,15 @@
           <div class="difficultyRadioButtons">
             <h3 class="OthelloTextLabel" >Choose the difficulty level</h3>
             <label class="OthelloTextLabel"  for="difficulty">Easy  </label>
-            <input class="radiobutton" type="radio" name="difficulty" value="Easy" onChange="updateRadioValue()" checked><br>
+            <input class="radiobutton" type="radio" name="difficulty" value="Easy" onChange="updateRadioValue()" checked>
             <label class="OthelloTextLabel"  for="difficulty">Medium</label>
-            <input class="radiobutton" type="radio" name="difficulty" value="Medium" onChange="updateRadioValue()"><br>
+            <input class="radiobutton" type="radio" name="difficulty" value="Medium" onChange="updateRadioValue()">
             <label class="OthelloTextLabel"  for="difficulty">Difficult</label>
-            <input class="radiobutton" type="radio" name="difficulty" value="Difficult" onChange="updateRadioValue()"><br>
+            <input class="radiobutton" type="radio" name="difficulty" value="Difficult" onChange="updateRadioValue()">
           </div>
           <button class="OthelloTextLabel"  type="button" onclick="playerTurnSkipped()">Skip My Turn</button>
           <button class="OthelloTextLabel"  type="button" onclick="playAgain()">Start Over/ Play Again</button>
+          <button class="OthelloTextLabel"  type="button" onclick="location.href='OthelloRules.html'">How to Play</button>
         </div>
       </div>
       <div class="othelloRightSide">

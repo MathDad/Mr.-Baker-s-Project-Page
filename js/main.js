@@ -471,10 +471,10 @@ function changeScreenSize(direction){
   console.log("gameboard width: "+gameboardWidth);
   
   if(gameboardWidth>440 && direction==-1){
-    gameboardWidth-=40;
+    gameboardWidth-=80;
   }
   if(gameboardWidth<1000 && direction==1){
-    gameboardWidth+=40;
+    gameboardWidth+=80;
   }
 
   console.log("gameboard width: "+gameboardWidth+"px");

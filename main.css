@@ -343,7 +343,9 @@ option,select,input{
 }
 
 .othelloDisplay{
-  background-color:rgba(66, 76, 85, 0.65);
+  background-color:rgba(248, 248, 248, 0.55);
+  border: 5px solid ;
+  border-color: rgba(66, 76, 85, 0.65);
   margin-right: 20px; 
   border-radius: 20px;
 }
@@ -351,18 +353,18 @@ option,select,input{
 .othelloDisplay,h3{
   padding: 10px 20px;
   font-size: 1.5rem;
-
-  
 }
+
 .othelloButtonsBox{
   padding: 20px 20px;
 }
 
 .othelloButtonsBox button{
-  width: 90%;
+  width: 83%;
   font-size: 1.5rem;
-  background-color: rgba(66, 76, 85, 0.65);
+  background-color: rgba(37,150,190,0.6);
   border-radius: 20px;
+  margin: 10px 0px 0px 30px;
 }
 
 .othelloButtonsBox button:hover{
@@ -423,9 +425,6 @@ option,select,input{
   background-color: #2c974b;
 }
 
-
-
-
 .difficultyRadioButtons, label {
   text-align: left;
   margin-left: 30px;
@@ -433,6 +432,12 @@ option,select,input{
   font-size: 20px;
 }
 
+
+.radiobutton{
+  width: 20px;
+  margin-left:10px;
+  
+}
 /*Color Picker CSS*/
 canvas {
   border: 15px solid #eaeaeb;

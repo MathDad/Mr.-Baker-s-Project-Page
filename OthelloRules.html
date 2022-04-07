@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="en" dir="ltr">
-  <?php
-    header("Access-Control-Allow-Origin: *");
-  >
   <head>
     <meta charset="utf-8">
     <title>Mr. Baker's Project Page</title>
     <link rel="stylesheet" href="main.css">
   </head>
-  <body>
-    
+  <body onload="setBoard()">
     <header>
       <div class="tab">
         <button id="title" onclick="location.href='index.html'">Mr. Baker's Project Page</button>
@@ -21,28 +16,10 @@
         <button class="tablinks" onclick="location.href='resume.html'">Resume</button>
       </div>
     </header>
-    <div class="mainContent">
-      
-      <div class="inputURL">
-        
-        <div id="ColorPickerLeftSide">
-          <h1 id="colorPickerHeader">Click Picture for color data</h1><br>
-          <canvas id="myCanvas" width="400" height="400"></canvas><br>
-        </div>
-        <div id="ColorPickerRightSide">
-          <div class="colorPickerLabels">
-            <div id="status">( x, y)</div> <br>
-            <div id="rgbData">rgb output</div><br>
-            <div id="hexData">hex output</div><br>
-          </div><br>  
-        </div>
-        
-      </div>
-      <script src="js/colorPicker.js">
-      </script>
+   
+    <h2 class="othelloHeader">Play Othello against the computer!</h2>
+    <div class="othelloContent" >
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/xDnYEOsjZnM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-    
   </body>
 </html>
-
-
